@@ -1,0 +1,478 @@
+.welcomeMsg{
+    text-align: center;
+    color: lightgray
+}
+
+header {
+    background-color: lightgrey;
+}
+
+#globe {
+    border-right: 5px;
+    margin: auto;
+    height: 29px;
+    width: 29px;
+    vertical-align: baseline;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    display: inline;
+    margin: 0;
+    border-left-width: 15px;
+    border-left-style: solid;
+    border-color: lightgray;
+}
+
+.col {
+    text-align: center;
+    margin: auto; 
+}
+
+table {
+    margin:auto;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.heading {
+    background-color: darkseagreen;
+    border-top-width: 25px;
+    border-color: lightgrey;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.countryInfo {
+    font-weight: bold;
+    text-align: left;
+}
+
+.countryData {
+    text-align: center;
+}
+
+.flag {
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    display: block;
+    margin-bottom: -20px;
+}
+
+.weatherInfo {
+    font-weight: bold;
+    text-align: center;
+}
+
+.weatherData {
+    text-align: center;
+}
+
+.newsStat {
+    text-align: center;
+}
+
+.newsImg {
+    width: 100%;
+}
+
+.newsInfo {
+    font-weight: bold;
+    text-align: center;
+}
+
+#mapid {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 47px;
+    bottom: 0; 
+}
+
+#mapid:active {
+    cursor: grabbing;
+}
+
+
+/* --- Button Icons --- */
+
+#countryBtn{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/info.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color:beige;
+}
+
+#weatherBtn{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/cloudy.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#covidBtn{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/covid-19.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#newsBtn{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/newspaper.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#capital{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/capital.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#cities{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/place.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#mountains{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/mountain.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#airports{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/airplane.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#museums{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/museum.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+    
+}
+
+#universities{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/uni.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#ferry{
+    width: 50px;
+    height: 50px;
+    transition-duration: .3s;
+    background-image:url("../icons/ship.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: beige;
+}
+
+#reset{
+    width: 25px;
+    height: 25px;
+    transition-duration: .3s;
+    background-image:url("../icons/reset.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color:beige;
+    border-right-width: 15px;
+}
+
+
+
+
+
+/* Preloader*/
+
+#preloaderText {
+    left: 0;
+    line-height: 200px;
+    margin-top: -350px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    color: chocolate;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+
+#preloader {
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background-image:url("../images/earth-curvature.jpg");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;  
+    background-color: black;
+
+}
+
+#preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(32% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #f2f2f2;
+    border-left: 6px solid lightseagreen;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-preloader {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+}
+
+/* Responsive Deisgn */
+
+@media only screen and (max-height: 550px) {
+    
+    *{
+        font-size: 0.95em;
+    }
+       
+    .flag {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        display: block;
+        margin-bottom: -20px;
+    }
+    
+    #mapid {
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 47px;
+        bottom: 0; 
+    }
+    
+    
+    /* --- Button Icons --- */
+    
+    #countryBtn, #weatherBtn, #covidBtn, #newsBtn, #capital, #cities, #mountains, #airports, #museums, #universities, #ferry {
+        width: 35px;
+        height: 35px;
+    }
+    
+    #reset{
+        width: 20px;
+        height: 20px;
+    }  
+    
+    #preloaderText {
+        line-height: 200px;
+        margin-top: -150px;
+        top: 25%;
+        width: 100%;
+        font-size: 1.25em;
+    }
+    
+}
+
+@media only screen and (max-height: 450px) {
+
+    /* --- Button Icons --- */
+    
+    #countryBtn, #weatherBtn, #covidBtn, #newsBtn, #capital, #cities, #mountains, #airports, #museums, #universities, #ferry {
+        width: 25px;
+        height: 25px;
+    }
+
+    #reset{
+        width: 15px;
+        height: 15px;
+    }  
+
+}
+
+
+@media only screen and (max-width: 950px) {
+    
+    *{
+        font-size: 0.95em;
+    }
+
+    #filler{
+        display: none;
+    }
+
+    .flag {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        display: block;
+        margin-bottom: -20px;
+    }
+    
+    #mapid {
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 42px;
+        bottom: 0; 
+    }
+    
+    #countryBtn, #weatherBtn, #covidBtn, #newsBtn, #capital, #cities, #mountains, #airports, #museums, #universities, #ferry {
+        width: 35px;
+        height: 35px;
+    }
+
+    #reset{
+        width: 15px;
+        height: 15px;
+    }
+    
+    #preloaderText {
+        line-height: 200px;
+        margin-top: -150px;
+        top: 25%;
+        width: 100%;
+        font-size: 1.25em;
+    }
+    
+}
+  
+@media only screen and (max-width: 515px) {
+
+    header {
+        height: 55px;
+    }
+
+    #mapid {
+        top: 55px;
+    }
+
+    #headCol {
+        padding-top:5px
+    }
+
+    #globe{
+        height: 20px;
+        width: 20px;
+    }
+
+    h1 {
+        border-left-width: 2px;
+    }
+
+    #countryBtn, #weatherBtn, #covidBtn, #newsBtn, #capital, #cities, #mountains, #airports, #museums, #universities, #ferry {
+        width: 25px;
+        height: 25px;
+    }
+  
+}
+
+@media only screen and (max-width: 430px) {
+
+    header {
+        height: 55px;
+    }
+
+    #mapid {
+        top: 55px;
+    }
+
+    #headCol {
+        padding-top:5px
+    }
+  
+}
+
+@media only screen and (max-width: 380px) {
+
+    h1 {
+        font-size: large;
+    }
+    
+    #globe{
+        height: 20px;
+        width: 20px;
+    }
+}

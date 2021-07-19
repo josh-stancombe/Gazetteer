@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+	<head>
+
+		<meta charset="utf-8">
+
+		<title>Gazetteer</title>
+		<meta name="author" content="Josh Stancombe">
+		<meta name="description" content="Gazetteer Web Application">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="libs/icons/place.png"/>
+		
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+		<!-- My Stylesheet -->
+		<link rel="stylesheet" type="text/css" href="libs/css/style.css">
+
+		<!-- Leaflet Styles -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+
+		<!--Marker Cluster -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+		
+		<!-- Font-Awesome -->
+		<script src="https://kit.fontawesome.com/2c55ed071b.js" crossorigin="anonymous"></script>	
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"> 
+
+	</head>
+
+	<body>
+
+		<header>
+			<div class="container-fluid">
+				<div class="row" id="headCol">
+				  <div class="col" id="title">
+					<img src="libs/icons/planet-earth.png" id="globe"/> <h1>Gazetteer</h1>
+				  </div>
+				  <div class="col">
+					<label for="country">Choose a country: </label> <select name="country" id="country"></select> 
+				  </div>
+				  <div class="col" id="filler">
+					  <!-- Filler Column -->
+				  </div>
+				</div>
+			</div>		
+		</header>
+		  
+		<main>
+			<div id="preloader"><h2 id="preloaderText">Generating Gazetteer...</h2></div>		
+			<div id="mapid"></div>
+		</main>
+			
+		<!-- jQuery Script -->
+		<script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script>
+		
+		<!-- Bootstrap Script -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+		<!-- Leaflet Scripts-->
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+		<!-- MarkerCluster -->
+		<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+	  
+
+		<!-- SweetAlert2-->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- My Scripts-->
+		<script type="text/javascript" src="libs/js/app.js"></script>
+		<script type="text/javascript" src="libs/js/Country.js"></script>
+		<script type="text/javascript" src="libs/js/updateMap.js"></script>
+		<script type="text/javascript" src="libs/js/findAvgLatLng.js"></script>
+		<script type="text/javascript" src="libs/js/getCurrentCountry.js"></script>
+		<script type="text/javascript" src="libs/js/getExchangeRate.js"></script>
+		<script type="text/javascript" src="libs/js/getWeatherInfo.js"></script>
+		<script type="text/javascript" src="libs/js/getCountryInfo.js"></script>
+		<script type="text/javascript" src="libs/js/getTimezone.js"></script>
+		<script type="text/javascript" src="libs/js/getRESTCountryInfo.js"></script>
+		<script type="text/javascript" src="libs/js/getCovidInfo.js"></script>
+		<script type="text/javascript" src="libs/js/getMapMarkers.js"></script>
+		<script type="text/javascript" src="libs/js/getNews.js"></script>
+		<script type="text/javascript" src="libs/js/buttons.js"></script>
+		<script type="text/javascript" src="libs/js/mapIcons.js"></script>
+
+	</body>
+
+</html>
