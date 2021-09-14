@@ -10,23 +10,21 @@
 		<meta name="description" content="Gazetteer Web Application">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		
+
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" href="libs/icons/place.png"/>
 		
 		<!-- Bootstrap -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="libs/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
 
-		<!-- My Stylesheet -->
-		<link rel="stylesheet" type="text/css" href="libs/css/style.css">
 
 		<!-- Leaflet Styles -->
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+		<link rel="stylesheet" href="libs/leaflet/leaflet.css"/>
+		<link rel="stylesheet" href="libs/leaflet/easybutton/Leaflet.EasyButton-master/src/easy-button.css"/>
 
 		<!--Marker Cluster -->
-		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
-		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+		<link rel="stylesheet" href="libs/leaflet/markercluster/Leaflet.markercluster-master/dist/MarkerCluster.css" />
+		<link rel="stylesheet" href="libs/leaflet/markercluster/Leaflet.markercluster-master/dist/MarkerCluster.Default.css" />
 		
 		<!-- Font-Awesome -->
 		<script src="https://kit.fontawesome.com/2c55ed071b.js" crossorigin="anonymous"></script>	
@@ -35,6 +33,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"> 
+
+		<!-- My Stylesheet -->
+		<link rel="stylesheet" type="text/css" href="libs/css/style.css">
 
 	</head>
 
@@ -47,7 +48,7 @@
 					<img src="libs/icons/planet-earth.png" id="globe"/> <h1>Gazetteer</h1>
 				  </div>
 				  <div class="col">
-					<label for="country">Choose a country: </label> <select name="country" id="country"></select> 
+					<select name="country" class="form-control" id="country"></select> 
 				  </div>
 				  <div class="col" id="filler">
 					  <!-- Filler Column -->
@@ -59,43 +60,490 @@
 		<main>
 			<div id="preloader"><h2 id="preloaderText">Generating Gazetteer...</h2></div>		
 			<div id="mapid"></div>
+			
+			<!-- Modal 1 - Country Information -->
+			<div class="modal fade" id="countryInfoModal" tabindex="-1" role="dialog" aria-labelledby="countryInfoModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<h5 class="modal-title modalTitle" id="Modal1Title"></h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					
+						<div class="modal-body">
+							
+							<img id="countryFlag">
+							<br><br>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2">Country Information</th>
+								  	</tr>
+								</thead>
+
+								<tbody class="countryInfo">
+									<tr>
+										<th scope="row">Country Name</th>
+										<td id="countryInfoName"></td>
+									</tr>
+									<tr>
+										<th scope="row">Capital City</th>
+										<td id="countryInfoCapital"></td>
+									</tr>
+									<tr>
+										<th scope="row">Timezone</th>
+										<td id="countryInfoTimezone"></td>
+									</tr>
+									<tr>
+										<th scope="row">Time Offset (GMT)</th>
+										<td id="countryInfoOffset"></td>
+									</tr>
+									<tr>
+										<th scope="row">Population</th>
+										<td id="countryInfoPopulation"></td>
+									</tr>
+									<tr>
+										<th scope="row">Area (KM²)</th>
+										<td id="countryInfoArea"></td>
+									</tr>
+									<tr>
+										<th scope="row">Language</th>
+										<td id="countryInfoLanguage"></td>
+									</tr>
+								</tbody>
+							</table>
+
+														
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2">Travel Information</th>
+								  	</tr>
+								</thead>
+
+								<tbody class="countryInfo">
+									<tr>
+										<th scope="row">Currency Code</th>
+										<td id="countryInfoCurrencyCode"></td>
+									</tr>
+									<tr>
+										<th scope="row">Currency Name</th>
+										<td id="countryInfoCurrencyName"></td>
+									</tr>
+									<tr>
+										<th scope="row">Current Exchange Rate</th>
+										<td id="countryInfoExchange"></td>
+									</tr>
+									<tr>
+										<th scope="row">Top Level Domain (www)</th>
+										<td id="countryInfoTLD"></td>
+									</tr>
+									<tr>
+										<th scope="row">Calling Code</th>
+										<td id="countryInfoCalling"></td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary close" data-dismiss="modal">Close</button>
+						</div>
+				</div>
+				</div>
+			</div>
+
+			<!-- Modal 2 - Weather -->
+			<div class="modal fade" id="weatherModal" tabindex="-1" role="dialog" aria-labelledby="weatherModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<h5 class="modal-title modalTitle" id="Modal2Title"></h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					
+						<div class="modal-body">
+							
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4" class="weatherHead">Current</th>
+								  	</tr>
+								</thead>
+
+								<tbody class="weatherTable">
+									<tr>
+										<td><i class="fas fa-temperature-high"></i></td>
+										<th scope="row">Temperature </th>
+										<td id="currentTemp"></td>
+										<td rowspan="3" class="weatherbground"><img id="currentIcon" class="weatherIcon" alt="Current Weather Icon"></td>
+									</tr>
+									<tr>
+										<td><i class="far fa-sun"></i></td>
+										<th scope="row">Feels Like </th>
+										<td id="currentFeelsLike"></td>
+									</tr>
+									<tr>
+										<td><i class="fas fa-wind"></i></td>
+										<th scope="row">Conditions</th>
+										<td id="currentConditions"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4" class="weatherHead">Tomorrow</th>
+								  	</tr>
+								</thead>
+
+								<tbody class="weatherTable">
+									<tr>
+										<td><i class="fas fa-temperature-high"></i></td>
+										<th scope="row">Temperature </th>
+										<td id="tomorrowTemp"></td>
+										<td rowspan="3" class="weatherbground"><img id="tomorrowIcon" class="weatherIcon" alt="Tomorrow Weather Icon"></td>
+									</tr>
+									<tr>
+										<td><i class="far fa-sun"></i></td>
+										<th scope="row">Feels Like </th>
+										<td id="tomorrowFeelsLike"></td>
+									</tr>
+									<tr>
+										<td><i class="fas fa-wind"></i></td>
+										<th scope="row">Conditions</th>
+										<td id="tomorrowConditions"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4" class="weatherHead" id="2DayName"></th>
+								  	</tr>
+								</thead>
+
+								<tbody class="weatherTable">
+									<tr>
+										<td><i class="fas fa-temperature-high"></i></td>
+										<th scope="row">Temperature </th>
+										<td id="2dayTemp"></td>
+										<td rowspan="3" class="weatherbground"><img id="2dayIcon" class="weatherIcon" alt="2 Days Weather Icon"></td>
+									</tr>
+									<tr>
+										<td><i class="far fa-sun"></i></td>
+										<th scope="row">Feels Like </th>
+										<td id="2dayFeelsLike"></td>
+									</tr>
+									<tr>
+										<td><i class="fas fa-wind"></i></td>
+										<th scope="row">Conditions</th>
+										<td id="2dayConditions"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4" class="weatherHead" id="3DayName"></th>
+								  	</tr>
+								</thead>
+
+								<tbody class="weatherTable">
+									<tr>
+										<td><i class="fas fa-temperature-high"></i></td>
+										<th scope="row">Temperature </th>
+										<td id="3dayTemp"></td>
+										<td rowspan="3" class="weatherbground"><img id="3dayIcon" class="weatherIcon" alt="3 Days Weather Icon"></td>
+									</tr>
+									<tr>
+										<td><i class="far fa-sun"></i></td>
+										<th scope="row">Feels Like </th>
+										<td id="3dayFeelsLike"></td>
+									</tr>
+									<tr>
+										<td><i class="fas fa-wind"></i></td>
+										<th scope="row">Conditions</th>
+										<td id="3dayConditions"></td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary close" data-dismiss="modal">Close</button>
+						</div>
+				</div>
+				</div>
+			</div>
+
+			<!-- Modal 3 - Covid -->
+			<div class="modal fade" id="covidModal" tabindex="-1" role="dialog" aria-labelledby="covidModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content covidModal">
+						
+						<div class="modal-header">
+							<h5 class="modal-title modalTitle" id="Modal3Title"></h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					
+						<div class="modal-body">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2" class="covidHead">Total</th>
+										</tr>
+								</thead>
+
+								<tbody class="covidTable">
+									<tr>
+										<th scope="row"><i class="fas fa-virus"></i> Total Cases</th>
+										<td id="totalCases"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-feather-alt"></i> Total Deaths </th>
+										<td id="totalDeaths"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-user-md"></i> Total Recovered</th>
+										<td id="totalRecovered"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2" class="covidHead">Past 24 Hours</th>
+									</tr>
+								</thead>
+
+								<tbody class="covidTable">
+									<tr>
+										<th scope="row"><i class="fas fa-virus"></i> New Cases</th>
+										<td id="newCases"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-feather-alt"></i> New Deaths </th>
+										<td id="newDeaths"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-user-md"></i> New Recovered</th>
+										<td id="newRecovered"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2" class="covidHead">3 Months Ago</th>
+										</tr>
+								</thead>
+
+								<tbody class="covidTable">
+									<tr>
+										<th scope="row"><i class="fas fa-virus"></i> Total Cases</th>
+										<td id="3mCases"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-feather-alt"></i> Total Deaths </th>
+										<td id="3mDeaths"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-user-md"></i> Total Recovered</th>
+										<td id="3mRecovered"></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" colspan="2" class="covidHead">6 Months Ago</th>
+										</tr>
+								</thead>
+
+								<tbody class="covidTable">
+									<tr>
+										<th scope="row"><i class="fas fa-virus"></i> Total Cases</th>
+										<td id="6mCases"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-feather-alt"></i> Total Deaths </th>
+										<td id="6mDeaths"></td>
+									</tr>
+									<tr>
+										<th scope="row"><i class="fas fa-user-md"></i> Total Recovered</th>
+										<td id="6mRecovered"></td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary close" data-dismiss="modal">Close</button>
+						</div>
+				</div>
+				</div>
+			</div>
+
+
+			<!-- Modal 4 - News -->
+			<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<h5 class="modal-title modalTitle" id="Modal4Title"></h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					
+						<div class="modal-body">
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4">Top Breaking Story</th>
+									</tr>
+								</thead>
+
+								<tbody class="newsTable">
+									<tr>
+										<td rowspan="3" colspan="2">
+											<a id="article1Link" target="_blank"> 
+												<img id="article1Img" class="newsImage" alt="News Article 1 Image">
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td id="article1Title" class="newsTitle" colspan="2"></td>
+									</tr>
+									<tr>
+										<td id="article1Source" colspan="2"></td>
+									</tr>
+
+								</tbody>
+							</table>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col" colspan="4">Additional Headlines</th>
+									</tr>
+								</thead>
+
+								<tbody class="newsTable">
+									<tr>
+										<td rowspan="3" colspan="2">
+											<a id="article2Link" target="_blank"> 
+												<img id="article2Img" class="newsImage" alt="News Article 2 Image">
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td id="article2Title" class="newsTitle" colspan="2"></td>
+									</tr>
+									<tr>
+										<td id="article2Source" colspan="2"></td>
+									</tr>
+
+									<tr>
+										<td rowspan="3" colspan="2">
+											<a id="article3Link" target="_blank"> 
+												<img id="article3Img" class="newsImage" alt="News Article 3 Image">
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td id="article3Title" class="newsTitle" colspan="2"></td>
+									</tr>
+									<tr>
+										<td id="article3Source" colspan="2"></td>
+									</tr>
+
+								</tbody>
+							</table>
+							
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary close" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal 5 - News Error -->
+			<div class="modal fade" id="newsError" tabindex="-1" role="dialog" aria-labelledby="newsErrorCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<h5 class="modal-title modalTitle" id="Modal5Title">Sorry...</h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					
+						<div class="modal-body">
+							<p>It looks there is no available news to display for <span id="errorCountry"></span> right now. </p>
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary close" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</main>
 			
 		<!-- jQuery Script -->
 		<script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script>
 		
-		<!-- Bootstrap Script -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<!-- Bootstrap Script  -->
+		<script src="libs/bootstrap/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+		<script src="libs/bootstrap/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Popper Bootstrap Module -- needed? -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> 
 
 		<!-- Leaflet Scripts-->
-		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-		<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+		<script src="libs/leaflet/leaflet.js"></script>
+		<script src="libs/leaflet/easybutton/Leaflet.EasyButton-master/src/easy-button.js"></script>
 
 		<!-- MarkerCluster -->
 		<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
-	  
+		<script src=""></script>
 
 		<!-- SweetAlert2-->
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 		<!-- My Scripts-->
 		<script type="text/javascript" src="libs/js/app.js"></script>
-		<script type="text/javascript" src="libs/js/Country.js"></script>
-		<script type="text/javascript" src="libs/js/updateMap.js"></script>
-		<script type="text/javascript" src="libs/js/findAvgLatLng.js"></script>
-		<script type="text/javascript" src="libs/js/getCurrentCountry.js"></script>
-		<script type="text/javascript" src="libs/js/getExchangeRate.js"></script>
-		<script type="text/javascript" src="libs/js/getWeatherInfo.js"></script>
-		<script type="text/javascript" src="libs/js/getCountryInfo.js"></script>
-		<script type="text/javascript" src="libs/js/getTimezone.js"></script>
-		<script type="text/javascript" src="libs/js/getRESTCountryInfo.js"></script>
-		<script type="text/javascript" src="libs/js/getCovidInfo.js"></script>
-		<script type="text/javascript" src="libs/js/getMapMarkers.js"></script>
-		<script type="text/javascript" src="libs/js/getNews.js"></script>
-		<script type="text/javascript" src="libs/js/buttons.js"></script>
-		<script type="text/javascript" src="libs/js/mapIcons.js"></script>
 
 	</body>
 
