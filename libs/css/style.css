@@ -16,10 +16,10 @@ header {
 }
 
 h1 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     display: inline;
     margin: 0;
-    border-left-width: 15px;
+    border-left-width: 5px;
     border-left-style: solid;
     border-color: lightgray;
 }
@@ -44,16 +44,24 @@ table {
     font-size: 1.25em;
 }
 
-.countryInfo {
-    font-weight: bold;
+thead {
+    text-align: center;
+    background: lightblue;
+}
+
+.modal-footer {
+    margin: auto;
+}
+
+.countryInfo th {
     text-align: left;
 }
 
-.countryData {
-    text-align: center;
+.countryInfo td {
+    text-align: right;
 }
 
-.flag {
+#countryFlag {
     margin-left: auto;
     margin-right: auto;
     width: 75%;
@@ -61,26 +69,44 @@ table {
     margin-bottom: -20px;
 }
 
-.weatherInfo {
-    font-weight: bold;
+.weatherHead {
+    background-color: wheat !important;
+}
+
+.weatherTable td {
     text-align: center;
 }
 
-.weatherData {
-    text-align: center;
+.weatherbground{
+    background-color: lightskyblue !important;
+    border-radius: 100%;
 }
 
-.newsStat {
-    text-align: center;
+.weatherIcon {
+    width: 50%;
+    margin: auto;
+    display: block;
+    padding-top: 25%;
 }
 
-.newsImg {
+.covidHead {
+    background-color: darkseagreen !important;
+}
+
+.covidModal {
+    width:90%
+}
+
+.covidTable td {
+    text-align: right;
+}
+
+.newsImage {
     width: 100%;
 }
 
-.newsInfo {
+.newsTitle{
     font-weight: bold;
-    text-align: center;
 }
 
 #mapid {
@@ -108,6 +134,7 @@ table {
     background-position: center;
     background-size: cover;  
     background-color:beige;
+    background-size: 80%;
 }
 
 #weatherBtn{
@@ -119,6 +146,7 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
 }
 
 #covidBtn{
@@ -130,6 +158,7 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
 }
 
 #newsBtn{
@@ -141,6 +170,7 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
 }
 
 #capital{
@@ -152,6 +182,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#capital.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #cities{
@@ -163,6 +199,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#cities.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #mountains{
@@ -174,6 +216,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#mountains.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #airports{
@@ -185,6 +233,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#airports.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #museums{
@@ -196,7 +250,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
-    
+    background-size: 80%;
+}
+
+#museums.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #universities{
@@ -208,6 +267,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#universities.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #ferry{
@@ -219,6 +284,12 @@ table {
     background-position: center;
     background-size: cover;  
     background-color: beige;
+    background-size: 80%;
+}
+
+#ferry.checked-active { 
+    background-color: grey;
+    opacity: 60%;
 }
 
 #reset{
@@ -231,10 +302,18 @@ table {
     background-size: cover;  
     background-color:beige;
     border-right-width: 15px;
+    background-size: 80%;
 }
 
+.modalTitle{
+    text-align: center;
+    text-decoration: double;
+}
 
-
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
 
 
 /* Preloader*/
@@ -261,7 +340,7 @@ table {
     bottom: 0;
     z-index: 9999;
     overflow: hidden;
-    background-image:url("../images/earth-curvature.jpg");
+    background-image:url("../images/earth.jpg");
     background-repeat: no-repeat; 
     background-position: center;
     background-size: cover;  
@@ -310,12 +389,8 @@ table {
 /* Responsive Deisgn */
 
 @media only screen and (max-height: 550px) {
-    
-    *{
-        font-size: 0.95em;
-    }
-       
-    .flag {
+          
+    #countryFlag {
         margin-left: auto;
         margin-right: auto;
         width: 50%;
@@ -374,15 +449,11 @@ table {
 
 @media only screen and (max-width: 950px) {
     
-    *{
-        font-size: 0.95em;
-    }
-
     #filler{
         display: none;
     }
 
-    .flag {
+    #countryFlag {
         margin-left: auto;
         margin-right: auto;
         width: 40%;
